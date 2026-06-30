@@ -1,0 +1,59 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+#include <zephyr/dt-bindings/gpio/gpio.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios
+            = <&gpio0 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 1번 */
+            , <&gpio0 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 2번 */
+            , <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 3번 */
+            , <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 4번 */
+            , <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 5번 */
+            , <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 6번 */
+            , <&gpio1 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 7번 */
+            , <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 8번 */
+            , <&gpio1 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 9번 */
+            ;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <9>;
+        rows = <1>;
+
+        map = <
+            RC(0,0) RC(0,1) RC(0,2)
+            RC(0,3) RC(0,4) RC(0,5)
+            RC(0,6) RC(0,7) RC(0,8)
+        >;
+    };
+
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        kscan = <&kscan0>;
+        transform = <&default_transform>;
+    };
+
+    knob: encoder {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* DT */
+        b-gpios = <&gpio1 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* CLK */
+        steps = <80>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&knob>;
+        triggers-per-rotation = <20>;
+    };
+};
