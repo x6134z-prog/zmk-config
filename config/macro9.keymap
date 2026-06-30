@@ -28,7 +28,10 @@
                 &kp LG(Z)          &td_cmd_b_r        &td_screenshot
                 &kp LC(UP)         &kp LG(A)          &kp LG(C)
                 &kp LG(K)          &kp LG(V)          &kp RET
+                &kp C_MUTE
             >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
     };
 };
