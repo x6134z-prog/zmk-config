@@ -1,0 +1,6 @@
+if SHIELD_MACRO9
+
+config ZMK_KEYBOARD_NAME
+    default "Macro9"
+
+endif
