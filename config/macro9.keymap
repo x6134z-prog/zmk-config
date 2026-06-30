@@ -2,6 +2,22 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    behaviors {
+        td_cmd_b_r: tap_dance_cmd_b_r {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp LG(B)>, <&kp LG(R)>;
+        };
+
+        td_screenshot: tap_dance_screenshot {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp LG(LS(N4))>, <&kp LG(LS(N3))>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -9,9 +25,9 @@
             display-name = "Base";
 
             bindings = <
-                &kp N1  &kp N2  &kp N3
-                &kp N4  &kp N5  &kp N6
-                &kp N7  &kp N8  &kp N9
+                &kp LG(Z)          &td_cmd_b_r        &td_screenshot
+                &kp LC(UP)         &kp LG(A)          &kp LG(K)
+                &kp LG(C)          &kp LG(V)          &kp RET
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
