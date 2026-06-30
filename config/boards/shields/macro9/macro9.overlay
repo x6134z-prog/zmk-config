@@ -12,15 +12,15 @@
         wakeup-source;
 
         input-gpios
-            = <&gpio0 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 1번 */
-            , <&gpio0 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 2번 */
-            , <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 3번 */
-            , <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 4번 */
-            , <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 5번 */
-            , <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 6번 */
-            , <&gpio1 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 7번 */
-            , <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 8번 */
-            , <&gpio1 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 9번 */
+            = <&gpio1 6  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 1번: 106 */
+            , <&gpio1 4  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 2번: 104 */
+            , <&gpio0 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 3번: 011 */
+            , <&gpio1 0  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 4번: 100 */
+            , <&gpio0 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 5번: 009 */
+            , <&gpio0 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 6번: 010 */
+            , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 7번: 111 */
+            , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 8번: 113 */
+            , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 9번: 115 */
             ;
     };
 
@@ -41,19 +41,5 @@
         display-name = "Default Layout";
         kscan = <&kscan0>;
         transform = <&default_transform>;
-    };
-
-    knob: encoder {
-        compatible = "alps,ec11";
-        a-gpios = <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* DT */
-        b-gpios = <&gpio1 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* CLK */
-        steps = <80>;
-        status = "okay";
-    };
-
-    sensors: sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&knob>;
-        triggers-per-rotation = <20>;
     };
 };
