@@ -21,18 +21,20 @@
             , <&gpio1 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 7번: 111 */
             , <&gpio1 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 8번: 113 */
             , <&gpio1 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 9번: 115 */
+            , <&gpio0 17 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>  /* 노브 클릭: 017 */
             ;
     };
 
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
-        columns = <9>;
+        columns = <10>;
         rows = <1>;
 
         map = <
             RC(0,0) RC(0,1) RC(0,2)
             RC(0,3) RC(0,4) RC(0,5)
             RC(0,6) RC(0,7) RC(0,8)
+            RC(0,9)
         >;
     };
 
@@ -41,5 +43,19 @@
         display-name = "Default Layout";
         kscan = <&kscan0>;
         transform = <&default_transform>;
+    };
+
+    knob: encoder {
+        compatible = "alps,ec11";
+        a-gpios = <&gpio0 22 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* CLK: 022 */
+        b-gpios = <&gpio0 20 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;  /* DT: 020 */
+        steps = <80>;
+        status = "okay";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&knob>;
+        triggers-per-rotation = <20>;
     };
 };
