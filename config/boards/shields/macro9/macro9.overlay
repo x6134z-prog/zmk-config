@@ -29,8 +29,8 @@
         diode-direction = "row2col";
 
         row-gpios
-            = <&gpio1 6 GPIO_ACTIVE_HIGH>   /* 윗줄 4키 공통선: 106 */
-            , <&gpio0 31 GPIO_ACTIVE_HIGH>  /* 아랫줄 5키 공통선: 031 */
+            = <&gpio1 6 GPIO_ACTIVE_HIGH>  /* 윗줄 4키 공통선: 106 */
+            , <&gpio0 2 GPIO_ACTIVE_HIGH>  /* 아랫줄 5키 공통선: 002 */
             ;
 
         col-gpios
