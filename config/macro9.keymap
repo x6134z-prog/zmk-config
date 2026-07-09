@@ -2,12 +2,40 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+    macros {
+        center_window: center_window {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_press &kp LCTRL>,
+                <&macro_press &kp GLOBE>,
+                <&macro_tap &kp C>,
+                <&macro_release &kp GLOBE>,
+                <&macro_release &kp LCTRL>;
+        };
+
+        fill_window: fill_window {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <20>;
+            tap-ms = <30>;
+            bindings =
+                <&macro_press &kp LCTRL>,
+                <&macro_press &kp GLOBE>,
+                <&macro_tap &kp F>,
+                <&macro_release &kp GLOBE>,
+                <&macro_release &kp LCTRL>;
+        };
+    };
+
     behaviors {
         td_center_fullscreen: tap_dance_center_fullscreen {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&kp LC(K_APP(C))>, <&kp LC(K_APP(F))>;
+            bindings = <&center_window>, <&fill_window>;
         };
 
         td_close_clear: tap_dance_close_clear {
