@@ -3,11 +3,18 @@
 
 / {
     behaviors {
-        td_cmd_b_r: tap_dance_cmd_b_r {
+        td_center_fullscreen: tap_dance_center_fullscreen {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&kp LG(B)>, <&kp LG(R)>;
+            bindings = <&kp LC(LA(C))>, <&kp LC(LA(F))>;
+        };
+
+        td_close_clear: tap_dance_close_clear {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&kp LG(W)>, <&kp LG(K)>;
         };
 
         td_screenshot: tap_dance_screenshot {
@@ -25,9 +32,9 @@
             display-name = "Base";
 
             bindings = <
-                &kp LG(Z)          &td_cmd_b_r        &td_screenshot        &kp LC(UP)
-                &kp LG(A)          &kp LG(C)          &kp LG(K)             &kp LG(V)          &kp RET
-                &kp C_MUTE
+                &kp LC(UP)         &td_center_fullscreen  &td_close_clear     &td_screenshot
+                &kp LG(Z)          &kp LG(A)              &kp LG(C)           &kp LG(V)          &kp RET
+                &kp C_PLAY_PAUSE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
