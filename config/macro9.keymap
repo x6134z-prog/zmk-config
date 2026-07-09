@@ -7,7 +7,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&kp LC(LA(C))>, <&kp LC(LA(F))>;
+            bindings = <&kp LC(K_APP(C))>, <&kp LC(K_APP(F))>;
         };
 
         td_close_clear: tap_dance_close_clear {
